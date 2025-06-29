@@ -2,54 +2,76 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Menu Secret - Concours Cuisine</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Secret - Air Gavroche</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #ffffff;
-      color: #0d1d8a;
-      text-align: center;
-      padding: 50px;
+    :root {
+      --bleu-roi: #0d1d8a;
+      --fond-clair: #f5f8ff;
     }
 
-    h1 {
-      color: #0d1d8a;
-      font-size: 2.5em;
-      margin-bottom: 10px;
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 2rem 1rem;
+      background-color: white;
+      color: var(--bleu-roi);
+      text-align: center;
     }
 
     img.logo {
-      width: 250px;
+      width: 180px;
       margin-bottom: 20px;
     }
 
+    h1 {
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
     p {
-      font-size: 1.2em;
-      margin-bottom: 40px;
+      font-size: 1.1rem;
+      margin-bottom: 30px;
     }
 
     .section {
-      margin: 30px 0;
-      border: 2px solid #0d1d8a;
+      background-color: var(--fond-clair);
+      border: 1.5px solid var(--bleu-roi);
       border-radius: 12px;
-      padding: 20px;
+      padding: 1.5rem;
       max-width: 500px;
-      margin-left: auto;
-      margin-right: auto;
-      background-color: #f5f8ff;
+      margin: 1.5rem auto;
+      box-shadow: 0 4px 8px rgba(13, 29, 138, 0.1);
     }
 
     h2 {
-      margin-bottom: 15px;
+      margin-bottom: 10px;
+      font-size: 1.3rem;
+    }
+
+    input[type="password"] {
+      padding: 8px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      margin-top: 8px;
+      width: 70%;
+      max-width: 250px;
     }
 
     button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #0d1d8a;
+      background-color: var(--bleu-roi);
       color: white;
       border: none;
-      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 1rem;
+      border-radius: 6px;
+      margin-left: 10px;
       cursor: pointer;
       transition: background-color 0.3s ease;
     }
@@ -60,33 +82,53 @@
 
     .plat {
       margin-top: 15px;
-      color: #0d1d8a;
-      font-weight: bold;
-      font-size: 1.1em;
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .erreur {
+      color: red;
+      font-size: 0.9rem;
+      margin-top: 8px;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 1.6rem;
+      }
+      .section {
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
 
   <img src="logo.png" alt="Logo Air Gavroche" class="logo">
-  <h1>🍽️ Menu Secret du Concours Cuisine</h1>
-  <p>Entrez le code pour révéler chaque plat.</p>
+  <h1>🍽️ Menu Secret - Air Gavroche</h1>
+  <p>Entrez le code pour découvrir chaque plat à bord</p>
 
   <div class="section">
     <h2>Entrée</h2>
-    <button onclick="verifierCode('entree')">Voir l'entrée</button>
+    <input type="password" id="code-entree" placeholder="Code">
+    <button onclick="verifierCode('entree')">Débloquer</button>
+    <div id="erreur-entree" class="erreur"></div>
     <div id="entree" class="plat"></div>
   </div>
 
   <div class="section">
     <h2>Plat principal</h2>
-    <button onclick="verifierCode('plat')">Voir le plat principal</button>
+    <input type="password" id="code-plat" placeholder="Code">
+    <button onclick="verifierCode('plat')">Débloquer</button>
+    <div id="erreur-plat" class="erreur"></div>
     <div id="plat" class="plat"></div>
   </div>
 
   <div class="section">
     <h2>Dessert</h2>
-    <button onclick="verifierCode('dessert')">Voir le dessert</button>
+    <input type="password" id="code-dessert" placeholder="Code">
+    <button onclick="verifierCode('dessert')">Débloquer</button>
+    <div id="erreur-dessert" class="erreur"></div>
     <div id="dessert" class="plat"></div>
   </div>
 
@@ -104,11 +146,18 @@
     };
 
     function verifierCode(categorie) {
-      const codeSaisi = prompt("Entrez le code pour voir " + categorie);
+      const input = document.getElementById(`code-${categorie}`);
+      const codeSaisi = input.value.trim();
+      const erreur = document.getElementById(`erreur-${categorie}`);
+      const zonePlat = document.getElementById(categorie);
+
       if (codeSaisi === codes[categorie]) {
-        document.getElementById(categorie).innerText = plats[categorie];
+        zonePlat.innerText = plats[categorie];
+        erreur.innerText = "";
+        input.style.display = "none";
+        input.nextElementSibling.style.display = "none";
       } else {
-        alert("Code incorrect !");
+        erreur.innerText = "Code incorrect";
       }
     }
   </script>
