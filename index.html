@@ -1,145 +1,88 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Menu Secret - Air Gavroche</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bleu-roi: #0d1d8a;
-      --fond-clair: #f5f8ff;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      font-family: 'Poppins', sans-serif;
-      margin: 0;
-      padding: 2rem 1rem;
-      background-color: white;
-      color: var(--bleu-roi);
+      font-family: Arial, sans-serif;
+      background: white;
+      color: #0d1d8a;
       text-align: center;
+      padding: 1rem;
     }
-
-    img.logo {
-      width: 180px;
-      margin-bottom: 20px;
+    img {
+      max-width: 90%;
+      height: auto;
+      margin: 1rem 0;
     }
-
-    h1 {
-      font-size: 2.2rem;
-      margin-bottom: 10px;
-    }
-
-    p {
-      font-size: 1.1rem;
-    }
-
-    .intro {
-      margin-bottom: 30px;
-    }
-
     .section {
-      background-color: var(--fond-clair);
-      border: 1.5px solid var(--bleu-roi);
-      border-radius: 12px;
-      padding: 1.5rem;
-      max-width: 500px;
-      margin: 1.5rem auto;
-      box-shadow: 0 4px 8px rgba(13, 29, 138, 0.1);
+      margin: 2rem 0;
     }
-
-    h2 {
-      margin-bottom: 10px;
-      font-size: 1.3rem;
-    }
-
     input[type="password"] {
-      padding: 8px;
+      padding: 0.5rem;
       font-size: 1rem;
+      margin-top: 0.5rem;
       border: 1px solid #ccc;
-      border-radius: 6px;
-      margin-top: 8px;
-      width: 70%;
-      max-width: 250px;
+      border-radius: 5px;
+      width: 60%;
+      max-width: 300px;
     }
-
     button {
-      background-color: var(--bleu-roi);
+      background-color: #0d1d8a;
       color: white;
+      padding: 0.5rem 1rem;
       border: none;
-      padding: 8px 16px;
+      border-radius: 5px;
       font-size: 1rem;
-      border-radius: 6px;
-      margin-left: 10px;
+      margin-left: 0.5rem;
       cursor: pointer;
-      transition: background-color 0.3s ease;
     }
-
-    button:hover {
-      background-color: #1429a0;
-    }
-
-    .plat {
-      margin-top: 15px;
-      font-weight: 600;
-      font-size: 1.1rem;
-    }
-
-    .erreur {
+    .error {
       color: red;
-      font-size: 0.9rem;
-      margin-top: 8px;
+      margin-top: 0.5rem;
     }
-
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 1.6rem;
-      }
-      .section {
-        padding: 1rem;
-      }
+    .result {
+      margin-top: 1rem;
+      font-weight: bold;
     }
   </style>
 </head>
 <body>
 
-  <img src="logo.png" alt="Logo Air Gavroche" class="logo">
+  <img src="logo.png" alt="Logo Air Gavroche"/>
 
-  <div class="intro">
-    <p><strong>Bienvenue à bord de la compagnie Air Gavroche.</strong></p>
-    <p>Nous espérons vous offrir le meilleur service tout au long de votre expérience culinaire.</p>
-  </div>
+  <p><strong>Bienvenue à bord de la compagnie Air Gavroche.</strong></p>
+  <p>Nous espérons vous offrir le meilleur service tout au long de votre expérience culinaire.</p>
 
-  <h1>🍽️ Menu Secret - Air Gavroche</h1>
-  <p>Entrez le code pour découvrir chaque plat à bord</p>
+  <img src="menu.png" alt="Menu décoré"/>
 
   <div class="section">
-    <h2>Entrée</h2>
-    <input type="password" id="code-entree" placeholder="Code">
+    <img src="entree.png" alt="Entrée"/>
+    <input type="password" id="code-entree" placeholder="Code pour l'entrée"/>
     <button onclick="verifierCode('entree')">Débloquer</button>
-    <div id="erreur-entree" class="erreur"></div>
-    <div id="entree" class="plat"></div>
+    <div class="error" id="error-entree"></div>
+    <div class="result" id="entree"></div>
   </div>
 
   <div class="section">
-    <h2>Plat principal</h2>
-    <input type="password" id="code-plat" placeholder="Code">
+    <img src="plat.png" alt="Plat"/>
+    <input type="password" id="code-plat" placeholder="Code pour le plat"/>
     <button onclick="verifierCode('plat')">Débloquer</button>
-    <div id="erreur-plat" class="erreur"></div>
-    <div id="plat" class="plat"></div>
+    <div class="error" id="error-plat"></div>
+    <div class="result" id="plat"></div>
   </div>
 
   <div class="section">
-    <h2>Dessert</h2>
-    <input type="password" id="code-dessert" placeholder="Code">
+    <img src="dessert.png" alt="Dessert"/>
+    <input type="password" id="code-dessert" placeholder="Code pour le dessert"/>
     <button onclick="verifierCode('dessert')">Débloquer</button>
-    <div id="erreur-dessert" class="erreur"></div>
-    <div id="dessert" class="plat"></div>
+    <div class="error" id="error-dessert"></div>
+    <div class="result" id="dessert"></div>
   </div>
+
+  <img src="final.png" alt="Ornement final"/>
 
   <script>
     const codes = {
@@ -154,19 +97,17 @@
       dessert: "Tarte au citron meringuée"
     };
 
-    function verifierCode(categorie) {
-      const input = document.getElementById(`code-${categorie}`);
-      const codeSaisi = input.value.trim();
-      const erreur = document.getElementById(`erreur-${categorie}`);
-      const zonePlat = document.getElementById(categorie);
+    function verifierCode(type) {
+      const input = document.getElementById(`code-${type}`);
+      const error = document.getElementById(`error-${type}`);
+      const result = document.getElementById(type);
 
-      if (codeSaisi === codes[categorie]) {
-        zonePlat.innerText = plats[categorie];
-        erreur.innerText = "";
-        input.style.display = "none";
-        input.nextElementSibling.style.display = "none";
+      if (input.value === codes[type]) {
+        result.innerText = plats[type];
+        error.innerText = "";
       } else {
-        erreur.innerText = "Code incorrect";
+        error.innerText = "Code incorrect.";
+        result.innerText = "";
       }
     }
   </script>
