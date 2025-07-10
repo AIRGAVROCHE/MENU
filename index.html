@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Menu Secret - Air Gavroche</title>
+  <title>Menu Du Vol Air Gavroche</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -45,7 +45,20 @@
     }
     .result {
       margin-top: 1rem;
-      font-weight: bold;
+      font-weight: normal;
+      padding: 0 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+    }
+    .result h3 {
+      color: #0d1d8a;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+    .result p {
+      margin: 0.3rem 0;
     }
   </style>
 </head>
@@ -92,9 +105,37 @@
     };
 
     const plats = {
-      entree: "Salade fraîcheur aux agrumes",
-      plat: "Poulet farci aux herbes, gratin dauphinois",
-      dessert: "Tarte au citron meringuée"
+      entree: `<h3>DÉCOLLAGE IMMINENT (ENTRÉE)</h3>
+<p><strong>✈ AéroCroques</strong><br>
+Alitalia : Cap saveurs ensoleillées (mozzarella, tomate)<br>
+Air Swiss : Vol au cœur des alpes (emmental, jambon cru)<br>
+Nordik airlines : Cap nord, vol froid (saumon fumé, fromage frais)</p>
+
+<p><strong>🚀 Sauces de maintenance</strong><br>
+Carburant rouge (ketchup)<br>
+Huile de moteur verte (guacamole)</p>
+
+<p><strong>🛫 Propulseurs vitaminés</strong><br>
+Feux de signalisation (carottes)<br>
+Marquage au sol (concombres)<br>
+Hélices croustillantes (biscuits salés)</p>`,
+
+      plat: `<h3>SERVICE EN VOL : (PLAT PRINCIPAL)</h3>
+<p>🍽 Choix du commandant de bord – Repas à haute altitude<br>
+Brise de cockpit (salade, tomates, concombres)<br>
+Riz du bout du monde (Riz basmati et curcuma)<br>
+Saveurs d’Orient (poulet Korma et coriandre)<br>
+Coin fraîcheur du voyageur (citron vert)<br>
+Nuage moelleux (pain)<br>
+Turbulence douce (boisson)</p>`,
+
+      dessert: `<h3>ATTERRISSAGE GOURMAND  (DESSERT)</h3>
+<p>Mocktail du ciel : Sunset Sky (grenadine, jus d’orange, limonade pétillante)<br>
+Zone douceurs : récupération des bagages (surprises)</p>
+
+<p>✈️ Nous espérons que votre vol s’est déroulé à merveille.<br>
+Merci d’avoir voyagé avec Gavroche Airlines<br>
+À très bientôt pour une nouvelle aventure à haute altitude !</p>`
     };
 
     function verifierCode(type) {
@@ -103,11 +144,11 @@
       const result = document.getElementById(type);
 
       if (input.value === codes[type]) {
-        result.innerText = plats[type];
+        result.innerHTML = plats[type];
         error.innerText = "";
       } else {
         error.innerText = "Code incorrect.";
-        result.innerText = "";
+        result.innerHTML = "";
       }
     }
   </script>
